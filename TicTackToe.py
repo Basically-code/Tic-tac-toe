@@ -7,15 +7,15 @@ import math
 # globals
 xSize = 600
 ySize = 600
-#Note some of these variables can't be accessed by the functions so a global function is used
+#Note some of these variables can't be accessed by the functions, so a global function is used
 is_on = True # this variable changes from X to O
 v = []        #All points
-vO = []       #This variable O all the already marked boxes
-vX = []       #This variable O all the already marked boxes
+vO = []       #This list  contains all Os of the already marked boxes
+vX = []       #This list contains all Xs of the already marked boxes
 wn   = turtle.Screen()
 turt = turtle.Turtle()
 
-#NOTE inorder to access some of the tuples on calling there is a use of "_" to identify as unused variables in the tuple
+#NOTE: In order to access some of the tuples on calling, there is a use of "_" to identify as unused variables in the tuple
 
 
 # Refer first to onBoard()
@@ -36,29 +36,29 @@ def drawO(qX, qY):
     cy = (q1[1] + q2[1]) / 2
     r  = (xSize / 3) / 2 
     turt.penup()
-    #NOTE cx and cy are center points so (cy-r) moves it to the bottom of the box for the circle to draw 
+    #NOTE cx and cy are center points, so (cy-r) moves it to the bottom of the box for the circle to draw 
     turt.goto(cx,cy-r)
     turt.pendown()
     turt.circle(r)
 
-# This function returns the parallel co-ordinates of each box and which box was it
+# This function returns the parallel co-ordinates of each box, and which box it was
 def onBoard(qX, qY):
-    #Since the turtle starts at the middle half the size is maxima of both sides 
+    #Since the turtle starts at the middle half the size is the maximum of both sides 
     dx = xSize / 2
-    # This lists all the possible X-axis (Columns) tuple 
+    # This lists all the possible X-axis (Columns) tuples 
     box_X = [
         (- dx,   -(dx/3), 2),
         (-(dx/3), (dx/3), 1),
         ( (dx/3),  dx,    0)
         ]
     dy = ySize / 2
-    # This lists all the possible Y-axis (Rows) tuple
+    # This lists all the possible Y-axis (Rows) tuples
     box_Y = [
         (- dy,   -(dy/3), 2),
         (-(dy/3), (dy/3), 1),
         ( (dy/3),  dy,    0)
         ]
-    #Since the intersection of a two rows and two colums forms a box boundary
+    #Since the intersection of two rows and two columns forms a box boundary
     for x1,x2,p1 in box_X:
         for y1,y2,p2 in box_Y:
             #If the X-coordinate and Y-coordinate are within the boundary
@@ -70,7 +70,7 @@ def onBoard(qX, qY):
                 return (x1,y2), (x2,y1), (x2,y2), (x1, y1), (px,py)
 
 def slashConditions(a1, a2, a3):
-    #Find's the slopes of the two points if the same they are collinear
+    # Find the slopes of the two points if the same, they are collinear
     m1 = (a2[1] - a1[1]) * (a3[0] - a2[0])
     m2 = (a3[1] - a2[1]) * (a2[0] - a1[0])
     if (m1 == m2):
